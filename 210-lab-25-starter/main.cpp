@@ -125,7 +125,10 @@ int main() {
     auto ls3 = high_resolution_clock::now();
 
     //inserting in list
-    l1.insert(mid, val);
+    auto it = l1.begin();
+    advance(it, mid); // move the iterator one element
+    l1.insert(it, val);
+    
 
 
     // End timing
@@ -134,6 +137,9 @@ int main() {
     // Calculate duration
     auto ld3 = duration_cast<nanoseconds>(le3 - ls3);
     int ldr3 = ld3.count();
+
+    //SET
+    
 
 
 
