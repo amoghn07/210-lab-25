@@ -5,6 +5,7 @@
 #include <set>
 #include <fstream>
 #include <algorithm>
+#include <iomanip>
 using namespace std;
 using namespace std::chrono;
 
@@ -50,6 +51,8 @@ int main() {
 
     //LIST
     // Start timing for list
+    fin.clear();
+    fin.seekg(0, ios::beg);
 
     auto ls = high_resolution_clock::now();
     //declaring set
@@ -64,10 +67,6 @@ int main() {
     // Calculate duration
     auto ld = duration_cast<nanoseconds>(le - ls);
     int ldr = ld.count();
-
-    //ouputting race 1
-    cout << "Operation\t\tVector\t\tList\t\tSet\n";
-    cout << "         \t\t" << vdr << "\t\t" << ldr << "\t" << sdr << endl;
 
     //RACE 2
     //resetting the cursor for file input
@@ -99,9 +98,6 @@ int main() {
     // Calculate duration
     auto ld2 = duration_cast<nanoseconds>(le2 - ls2);
     int ldr2 = ld2.count();
-
-    //ouputting
-    cout << "\t\t" << vdr2 << "\t\t" << ldr2 << "\t" << sdr2 << endl;
 
     //RACE 3
     //VECTOR
@@ -151,9 +147,6 @@ int main() {
     auto sd3 = duration_cast<nanoseconds>(se3 - ss3);
     int sdr3 = sd3.count();
 
-    //output race 3
-    cout << vdr3 << ldr3 << sdr3;
-
     //Race 4
     //VECTOR
     auto vs4 = high_resolution_clock::now();
@@ -172,18 +165,62 @@ int main() {
     auto ls4 = high_resolution_clock::now();
 
     //deleting middle 
-    auto it = l1.begin();
-    advance(it, mid);
-    l1.erase(it);
+        auto it4 = l1.begin();
+        advance(it4, mid);
+        l1.erase(it4);
     
     // End timing
-    auto ve4 = high_resolution_clock::now();
+    auto le4 = high_resolution_clock::now();
 
     // Calculate duration
-    auto vd4 = duration_cast<nanoseconds>(ve4 - vs4);
-    int vdr4 = vd4.count();
+    auto ld4 = duration_cast<nanoseconds>(le4 - ls4);
+    int ldr4 = ld4.count();
 
+    //SET
+    auto ss4 = high_resolution_clock::now();
 
+    //deleting middle 
+    auto it3 = s1.begin();
+    advance(it3, mid);
+    s1.erase(it3);
+    
+    // End timing
+    auto se4 = high_resolution_clock::now();
+
+    // Calculate duration
+    auto sd4 = duration_cast<nanoseconds>(se4 - ss4);
+    int sdr4 = sd4.count();
+
+    //output table
+    cout << left
+         << setw(12) << "Operation"
+         << setw(12) << "Vector"
+         << setw(12) << "List"
+         << setw(12) << "Set" << '\n';
+
+    cout << left
+         << setw(12) << "Read"
+         << setw(12) << vdr
+         << setw(12) << ldr
+         << setw(12) << sdr << '\n';
+
+    cout << left
+         << setw(12) << "Sort"
+         << setw(12) << vdr2
+         << setw(12) << ldr2
+         << setw(12) << sdr2 << '\n';
+
+    cout << left
+         << setw(12) << "Insert"
+         << setw(12) << vdr3
+         << setw(12) << ldr3
+         << setw(12) << sdr3 << '\n';
+
+    cout << left
+         << setw(12) << "Delete"
+         << setw(12) << vdr4
+         << setw(12) << ldr4
+         << setw(12) << sdr4 << '\n';
 
 
     return 0;
