@@ -126,7 +126,7 @@ int main() {
 
     //inserting in list
     auto it = l1.begin();
-    advance(it, mid); // move the iterator one element
+    advance(it, mid);
     l1.insert(it, val);
     
 
@@ -139,7 +139,49 @@ int main() {
     int ldr3 = ld3.count();
 
     //SET
+    auto ss3 = high_resolution_clock::now();
+
+    //inserting in set
+    s1.insert(val);
+
+    // End timing
+    auto se3 = high_resolution_clock::now();
+
+    // Calculate duration
+    auto sd3 = duration_cast<nanoseconds>(se3 - ss3);
+    int sdr3 = sd3.count();
+
+    //output race 3
+    cout << vdr3 << ldr3 << sdr3;
+
+    //Race 4
+    //VECTOR
+    auto vs4 = high_resolution_clock::now();
+
+    //deleting middle 
+    v1.erase(v1.begin()+mid);
     
+    // End timing
+    auto ve4 = high_resolution_clock::now();
+
+    // Calculate duration
+    auto vd4 = duration_cast<nanoseconds>(ve4 - vs4);
+    int vdr4 = vd4.count();
+
+    //LIST
+    auto ls4 = high_resolution_clock::now();
+
+    //deleting middle 
+    auto it = l1.begin();
+    advance(it, mid);
+    l1.erase(it);
+    
+    // End timing
+    auto ve4 = high_resolution_clock::now();
+
+    // Calculate duration
+    auto vd4 = duration_cast<nanoseconds>(ve4 - vs4);
+    int vdr4 = vd4.count();
 
 
 
